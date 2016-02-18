@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="fileReader" class="com.ipn.reader.impl.FileReaderImpl" >
+		<constructor-arg value="res/Test.txt" />
+	</bean>
+
+	
+	<bean name="ftpReader" class="com.ipn.reader.impl.FtpReaderImpl" >
+		<property name = "host" value = "myport"/>
+		<property name = "port" value = "9000"/>
+	</bean>
+		
+	<bean name="readerService" class="com.ipn.service.ReaderService" >
+		<property name="reader" ref="fileReader" />
+	</bean>	
+
+</beans>
