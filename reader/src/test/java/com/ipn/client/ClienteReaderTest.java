@@ -5,6 +5,8 @@
  */
 package com.ipn.client;
 
+import com.ipn.dao.ProductoDAO;
+import com.ipn.dao.impl.ProductoDAOImpl;
 import com.ipn.reader.Reader;
 import com.ipn.service.ReaderService;
 import org.junit.Before;
@@ -37,13 +39,29 @@ public class ClienteReaderTest
         logger.debug("Inicio de la prueba unitaria");
     }
     
-     @Test
-    public void leerReader() 
+    @Test
+    public void leerFTPReader() 
     {
         String dato;
         logger.debug("Termina de leer");
         dato = this.getData();
-        assertEquals(dato, "myport - 9000");
+        assertEquals(dato, "oreilly.com - 9000");
+    }
+    
+    //@Test
+    public void leerNumberReader() 
+    {
+        String dato;
+        logger.debug("Termina de leer");
+        dato = this.getData();
+        assertEquals(dato, "NumberReader10");
+    }
+    
+    @Test
+    public void testJdbcTemplate(){
+        ProductoDAOImpl product = (ProductoDAOImpl) ctx.getBean("productoDao");
+        String descripcion = product.getAllProducts();
+        assertEquals(descripcion,"Lamp");
     }
     
     private String getData() {
